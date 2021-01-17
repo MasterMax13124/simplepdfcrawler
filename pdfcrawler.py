@@ -1,19 +1,21 @@
 import pdfplumber
 import os
 
-#os.chdir("tgnotes")
-
+pathname = input("Please input the path to your pdf folder: ")
+os.chdir(pathname)
 
 pdflist = os.listdir()
+print("Found " + str(len(pdflist)) + " pdf-files")
 megafile = open("megafile.txt", "w+")
 index = 0
 
 for filename in pdflist:
     if filename[-3:] == "pdf":
-        print(index)
-        pdf = pdfplumber.open(pdflist[index])
+        #print(index)
+        print("Reading file " + filename)
+        pdf = pdfplumber.open(filename)
         text = pdf.pages[0].extract_text()
-        megafile.write("\n\n Text from " + filename + "\n" + text)
+        megafile.write("Text from " + filename + "\n\n" + text + "\n\n\n")
         pdf.close()
     index = index +1
 
