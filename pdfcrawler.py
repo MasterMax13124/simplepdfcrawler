@@ -1,4 +1,5 @@
 import pdfplumber
+import sys
 import os
 
 pathname = input("Please input the path to your pdf folder: ")
@@ -6,6 +7,14 @@ os.chdir(pathname)
 
 pdflist = os.listdir()
 print("Found " + str(len(pdflist)) + " pdf-files")
+
+if os.path.isfile(pathname + "/megafile.txt"):
+    yesno = input("Do you want to overwrite the existing megafile.txt? (Y/n)")
+    if yesno.lower() == "no" or yesno.lower() == "n":
+        print("Exiting...")
+        sys.exit()
+
+
 megafile = open("megafile.txt", "w+")
 index = 0
 
