@@ -3,6 +3,8 @@ import sys
 import os
 
 pathname = input("Please input the path to your pdf folder: ")
+if pathname.find("/") == -1:
+    pathname = os.getcwd() + "/" + pathname
 os.chdir(pathname)
 
 pdflist = os.listdir()
